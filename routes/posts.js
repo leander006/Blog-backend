@@ -44,23 +44,25 @@ router.put("/:id",protect,async(req,res)=>{
 
 //Delete post
 router.delete("/:id",protect,async(req,res)=>{
-
+   
      try {
         const post = await Post.findById(req.params.id);
+        res.json("post"+post.username)
+        res.json("frontend"+req.body.others.username)
         if(post.username === req.body.others.username)
         {
             try {
                 await post.delete();
                 res.status(200).json("Post deleted successfully! ");
             } catch (error) {
-                res.status(501).json(error.message);
+                res.status(501).json("inside auth"+error.message);
             }
         }
         else{
             res.status(401).json("You can delete only your Posts");
         }
     } catch (error) {
-        res.status(500).json(error.message)
+        res.status(500).json("outside auth"+error.message)
     }
 
 });
