@@ -53,14 +53,14 @@ router.delete("/:id",protect,async(req,res)=>{
                 await post.delete();
                 res.status(200).json("Post deleted successfully! ");
             } catch (error) {
-                res.status(500).json(error);
+                res.status(501).json(error.message);
             }
         }
         else{
             res.status(401).json("You can delete only your Posts");
         }
     } catch (error) {
-        res.status(500).json(error)
+        res.status(500).json(error.message)
     }
 
 });
