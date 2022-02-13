@@ -76,6 +76,7 @@ router.post("/login",asyncHandler(async(req,res)=>{
        const { password, ...others } = user._doc;
        res.status(200).json({others , token : generateToken(username.id)});
     } catch (error) {
+        res.status(501).json(error)
        console.log(error);
     }
 }))
