@@ -2,7 +2,7 @@ const router = require("express").Router();
 const User = require("../models/Users");
 const Post = require("../models/Post");
 const { protect } = require("../middleware/authMiddileware");
-// const bcrypt = require('bcrypt');
+
 
 //Create post
 router.post("/",protect,async(req,res)=>{
@@ -44,22 +44,21 @@ router.put("/:id",protect,async(req,res)=>{
 
 //Delete post
 router.delete("/:id",protect,async(req,res)=>{
-    // const {username} = req.body;
-    // console.log(username);
+
      try {
         const post = await Post.findById(req.params.id);
-        // if(post.username === req.body.others.username)
-        // {
+        if(post.username === req.body.others.username)
+        {
             try {
                 await post.delete();
                 res.status(200).json("Post deleted successfully! ");
             } catch (error) {
                 res.status(500).json(error);
             }
-        // }
-        // else{
-        //     res.status(401).json("You can delete only your Posts");
-        // }
+        }
+        else{
+            res.status(401).json("You can delete only your Posts");
+        }
     } catch (error) {
         res.status(500).json(error)
     }

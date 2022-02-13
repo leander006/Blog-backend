@@ -14,16 +14,6 @@ router.post("/",protect,async(req,res) =>{
         res.status(500).json(error);
     }
 })
-// Get category
 
-// router.get("/",protect,async(req,res) =>{
-
-//     try {
-//         const Cat = await Category.find();
-//         res.status(200).json(Cat);
-//     } catch (error) {
-//         res.status(500).json(error);
-//     }
-// })
 module.exports = router;
 
