@@ -16,7 +16,7 @@ app.use(cors())
 
 mongoose.connect(process.env.MONGO_URL
     ).then(console.log("connected to mongodb")
-    ).catch((err)=> console.log(err));
+).catch((err)=> console.log(err));
 
 
     
@@ -26,7 +26,9 @@ app.use("/api/users",usersRoute) ;
 
 app.use("/api/posts",postRoute) ;
 
-
+app.get('/api/leander',(req,res)=>{
+    res.send("Hello i am leander");
+})
 
 
 
