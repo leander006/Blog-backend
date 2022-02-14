@@ -44,7 +44,7 @@ router.put("/:id",protect,async(req,res)=>{
 
 //Delete post
 router.delete("/:id",protect,async(req,res)=>{
-   
+   console.log(req.params.id);
      try {
         const post = await Post.findById(req.params.id);
         res.json("post "+post.username)
