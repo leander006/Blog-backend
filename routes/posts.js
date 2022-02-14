@@ -80,21 +80,16 @@ router.get("/:id",protect,async(req,res)=>{
 
 //Get all post
 
-router.get("/",async(req,res)=>{
+router.get("/",protect,async(req,res)=>{
     const username = req.query.user;
-    const catname = req.query.cat;
+    
     try {
         let posts;
        if(username)
        {
            posts = await Post.find({username});
-       }else if(catname)
-       {
-           posts = await Post.find({categories :{
-               $in:[catname],
-           },
-        })
-       }else{
+       }
+       else{
            posts = await Post.find();
        }
        res.status(200).json(posts);
