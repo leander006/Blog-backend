@@ -53,13 +53,14 @@ router.delete("/:id",protect,async(req,res)=>{
         {
             try {
                 await post.delete();
-                res.status(200).json("Post deleted successfully! ");
+                console.log("");
             } catch (error) {
-                res.status(501).json("inside auth"+error.message);
+                console.log("inside auth"+error.message);
             }
         }
         else{
-            res.status(401).json("You can delete only your Posts");
+            
+            console.log("you can delete only your Posts");
         }
     } catch (error) {
         res.status(500).json("outside auth"+error.message)
