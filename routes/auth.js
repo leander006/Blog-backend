@@ -54,6 +54,7 @@ router.post("/register",asyncHandler(async(req,res)=>{
 //login
 router.post("/login",asyncHandler(async(req,res)=>{
     const {username,password} = req.body;
+
     const user = await User.findOne({username});
     const validate = await bcrypt.compare(req.body.password,user.password)
     if(!username|| !password)
