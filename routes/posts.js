@@ -80,9 +80,9 @@ router.get("/:id",protect,async(req,res)=>{
 
 //Get all post
 
-router.get("/",protect,async(req,res)=>{
+router.get("/",async(req,res)=>{
     const username = req.query.user;
-    
+
     try {
         let posts;
        if(username)
