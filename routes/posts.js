@@ -81,22 +81,22 @@ router.get("/:id",protect,async(req,res)=>{
 
 //Get all post
 
-router.get("/",async(req,res)=>{
-    const username = req.query.user;
+// router.get("/",async(req,res)=>{
+//     const username = req.query.user;
 
-    try {
-        let posts;
-       if(username)
-       {
-           posts = await Post.find({username});
-       }
-       else{
-           posts = await Post.find();
-       }
-       res.status(200).json(posts);
-    } catch (error) {
-        res.status(500).json(error);
-    }
-})
+//     try {
+//         let posts;
+//        if(username)
+//        {
+//            posts = await Post.find({username});
+//        }
+//        else{
+//            posts = await Post.find();
+//        }
+//        res.status(200).json(posts);
+//     } catch (error) {
+//         res.status(500).json(error);
+//     }
+// })
 
 module.exports = router;
