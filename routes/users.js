@@ -7,14 +7,10 @@ const { protect } = require("../middleware/authMiddileware");
 //update
 router.put("/:id",protect,async(req,res)=>{
     const {userId}= req.body
-    console.log(req.params.id);
-    const user = await User.findById(req.params.id)
-    const post = await Post.find({username:user.username})
-    console.log(post);
-    console.log(user.username);
+   
     if(userId === req.params.id){
         
-        if(!post){
+      
             if(req.body.password)
             {
                 const salt = await bcrypt.genSalt(10);
@@ -31,10 +27,6 @@ router.put("/:id",protect,async(req,res)=>{
                 res.status(401).json( error);
                 console.log(error);
             }
-
-        }else{
-            res.status(402).json("First delete all your post")
-        }
    
 } else{
   

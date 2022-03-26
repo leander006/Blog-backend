@@ -18,7 +18,7 @@ mongoose.connect(process.env.MONGO_URL
     ).then(console.log("connected to mongodb")
 ).catch((err)=> console.log(err));
 
-    
+
 app.use("/api/auth",authRoute) ;
 
 app.use("/api/users",usersRoute) ;
@@ -29,21 +29,21 @@ app.use("/api/posts",postRoute) ;
 //------deploy to heroku -------------------------
 
 
-__dirname = path.resolve()
+// __dirname = path.resolve()
 
-if(process.env.NODE_ENV === 'production'){
-app.use(express.static(path.join(__dirname,'/frontend/build')))
+// if(process.env.NODE_ENV === 'production'){
+// app.use(express.static(path.join(__dirname,'/frontend/build')))
 
-    app.get('*',(req,res) =>{
-        res.sendFile(path.resolve(__dirname,"frontend","build","index.html"));
-    })
-}
-else{
-    app.get('/',(req,res)=>{
-        res.send("hello");
-    })
+//     app.get('*',(req,res) =>{
+//         res.sendFile(path.resolve(__dirname,"frontend","build","index.html"));
+//     })
+// }
+// else{
+//     app.get('/',(req,res)=>{
+//         res.send("hello");
+//     })
     
-}
+// }
 
 //--------------------------------------
 
