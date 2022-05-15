@@ -5,16 +5,18 @@ const mongoose = require("mongoose");
 const authRoute = require("./routes/auth");
 const usersRoute = require("./routes/users");
 const postRoute = require("./routes/posts");
-const path = require('path')
+const commentsRoute = require('./routes/comments')
 
-
+const {protect} = require('./middleware/authMiddileware');
 const cors = require('cors')
 
-dotenv.config();
+
 app.use(express.json());
 app.use(cors())
 
-mongoose.connect(process.env.MONGO_URL
+dotenv.config();
+
+mongoose.connect(process.env.MONGO_URI
     ).then(console.log("connected to mongodb")
 ).catch((err)=> console.log(err));
 
@@ -25,6 +27,7 @@ app.use("/api/users",usersRoute) ;
 
 app.use("/api/posts",postRoute) ;
 
+app.use("/api/comments",commentsRoute) ;
 
 //------deploy to heroku -------------------------
 
@@ -53,6 +56,6 @@ app.get('/',(req,res)=>{
          })
 
 
-app.listen(process.env.PORT || 4000,()=>{
+app.listen(process.env.PORT || 4001,()=>{
     console.log("backend runnig");
 })

@@ -2,27 +2,35 @@ const mongoose = require("mongoose");
 
 
 const PostSchema = new mongoose.Schema({
+    postImage:{
+        type:String, 
+    },
     title:{
         type:String,
         required:true,
-        unique:true
+        unique:true,
     },
     desc:{
         type:String,
         required:true,
-    },
-    username:{
-        type:String,
-        required:true
+        unique:true,
     },
     categories:{
-        type:Array,
-        required:false,
-        
+        type:String,
+        unique:false
     },
-    
+    comments:{
+        type:[mongoose.Schema.Types.ObjectId],
+        ref:'Comment',
+    },
+    createdBy:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'User',
+    }
 },
-{timestamps:true}
+{
+    timestamps:true
+}
 );
 
 module.exports =  mongoose.model("Post",PostSchema);

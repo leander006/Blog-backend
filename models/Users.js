@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Post= require('../models/Post')
 
 
 const UserSchema = new mongoose.Schema({
@@ -16,9 +17,19 @@ const UserSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-
+    profilePic:{
+        type:String, 
+        unique:true,
+        required:true,
+    },
+    isAdmin:{
+        type:String,
+        default:false,
+    },
 },
-{timestamps:true}
+{
+    timestamps:true
+}
 );
 
 module.exports =  mongoose.model("User",UserSchema);
